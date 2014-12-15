@@ -1,0 +1,941 @@
+--
+-- PostgreSQL database dump
+--
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: f; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE f
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.f OWNER TO admin;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: accesorioselectronicos; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE accesorioselectronicos (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.accesorioselectronicos OWNER TO admin;
+
+--
+-- Name: audifonos; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE audifonos (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.audifonos OWNER TO admin;
+
+--
+-- Name: audio; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE audio (
+    idaudio integer
+);
+
+
+ALTER TABLE public.audio OWNER TO admin;
+
+--
+-- Name: celulares; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE celulares (
+    idcelularesyaccesorios integer
+);
+
+
+ALTER TABLE public.celulares OWNER TO admin;
+
+--
+-- Name: compu; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE compu (
+    idpcetc integer
+);
+
+
+ALTER TABLE public.compu OWNER TO admin;
+
+--
+-- Name: consolas; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE consolas (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    compania integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.consolas OWNER TO admin;
+
+--
+-- Name: departamentos; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE departamentos (
+    iddepartamento integer
+);
+
+
+ALTER TABLE public.departamentos OWNER TO admin;
+
+--
+-- Name: dvdblueray; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE dvdblueray (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer,
+    blueraydvd integer
+);
+
+
+ALTER TABLE public.dvdblueray OWNER TO admin;
+
+--
+-- Name: electrodomesticos; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE electrodomesticos (
+    idlineablanca integer
+);
+
+
+ALTER TABLE public.electrodomesticos OWNER TO admin;
+
+--
+-- Name: electronica; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE electronica (
+    idproductos integer
+);
+
+
+ALTER TABLE public.electronica OWNER TO admin;
+
+--
+-- Name: especificaciones; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE especificaciones (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    caracteristicas text,
+    promociones integer
+);
+
+
+ALTER TABLE public.especificaciones OWNER TO admin;
+
+--
+-- Name: estufassartenes; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE estufassartenes (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    estufaosarten integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.estufassartenes OWNER TO admin;
+
+--
+-- Name: figuras; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE figuras (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    compania integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.figuras OWNER TO admin;
+
+--
+-- Name: fotografia; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE fotografia (
+    idfoto integer
+);
+
+
+ALTER TABLE public.fotografia OWNER TO admin;
+
+--
+-- Name: imagenes; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE imagenes (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    producto integer,
+    imagen bytea
+);
+
+
+ALTER TABLE public.imagenes OWNER TO admin;
+
+--
+-- Name: juegos; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE juegos (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    compania integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.juegos OWNER TO admin;
+
+--
+-- Name: laptops; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE laptops (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.laptops OWNER TO admin;
+
+--
+-- Name: lavadorassecadoras; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE lavadorassecadoras (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    lavadoraosecadora integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.lavadorassecadoras OWNER TO admin;
+
+--
+-- Name: minicomponente; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE minicomponente (
+    idaccesorio integer
+);
+
+
+ALTER TABLE public.minicomponente OWNER TO admin;
+
+--
+-- Name: muebles; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE muebles (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.muebles OWNER TO admin;
+
+--
+-- Name: nintendo; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE nintendo (
+    idtodo integer
+);
+
+
+ALTER TABLE public.nintendo OWNER TO admin;
+
+--
+-- Name: pantallas; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE pantallas (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    tamano text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.pantallas OWNER TO admin;
+
+--
+-- Name: pcescritorio; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE pcescritorio (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.pcescritorio OWNER TO admin;
+
+--
+-- Name: pcgaming; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE pcgaming (
+    idtodo integer
+);
+
+
+ALTER TABLE public.pcgaming OWNER TO admin;
+
+--
+-- Name: playstation; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE playstation (
+    idtodo integer
+);
+
+
+ALTER TABLE public.playstation OWNER TO admin;
+
+--
+-- Name: promocion; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE promocion (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre_promocion text,
+    promocion text,
+    dias integer
+);
+
+
+ALTER TABLE public.promocion OWNER TO admin;
+
+--
+-- Name: proyectormonitor; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE proyectormonitor (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    proyectoromonitor integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.proyectormonitor OWNER TO admin;
+
+--
+-- Name: refrigeradorcongelador; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE refrigeradorcongelador (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    refrioconge integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.refrigeradorcongelador OWNER TO admin;
+
+--
+-- Name: reproductoresportatiles; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE reproductoresportatiles (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.reproductoresportatiles OWNER TO admin;
+
+--
+-- Name: scannerimpresion; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE scannerimpresion (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    scanneroimpresora integer,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.scannerimpresion OWNER TO admin;
+
+--
+-- Name: smartphones; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE smartphones (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    nombre text,
+    compania text,
+    precio real,
+    especificaciones integer
+);
+
+
+ALTER TABLE public.smartphones OWNER TO admin;
+
+--
+-- Name: tv; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE tv (
+    idvideo integer
+);
+
+
+ALTER TABLE public.tv OWNER TO admin;
+
+--
+-- Name: videojuegos; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE videojuegos (
+    idconsolasyjuegos integer
+);
+
+
+ALTER TABLE public.videojuegos OWNER TO admin;
+
+--
+-- Name: xbox; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE xbox (
+    idtodo integer
+);
+
+
+ALTER TABLE public.xbox OWNER TO admin;
+
+--
+-- Data for Name: accesorioselectronicos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY accesorioselectronicos (id, nombre, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: audifonos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY audifonos (id, nombre, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: audio; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY audio (idaudio) FROM stdin;
+\.
+
+
+--
+-- Data for Name: celulares; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY celulares (idcelularesyaccesorios) FROM stdin;
+\.
+
+
+--
+-- Data for Name: compu; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY compu (idpcetc) FROM stdin;
+\.
+
+
+--
+-- Data for Name: consolas; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY consolas (id, nombre, compania, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: departamentos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY departamentos (iddepartamento) FROM stdin;
+\.
+
+
+--
+-- Data for Name: dvdblueray; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY dvdblueray (id, nombre, precio, especificaciones, blueraydvd) FROM stdin;
+\.
+
+
+--
+-- Data for Name: electrodomesticos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY electrodomesticos (idlineablanca) FROM stdin;
+\.
+
+
+--
+-- Data for Name: electronica; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY electronica (idproductos) FROM stdin;
+\.
+
+
+--
+-- Data for Name: especificaciones; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY especificaciones (id, caracteristicas, promociones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: estufassartenes; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY estufassartenes (id, nombre, estufaosarten, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Name: f; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('f', 1, false);
+
+
+--
+-- Data for Name: figuras; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY figuras (id, nombre, compania, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: fotografia; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY fotografia (idfoto) FROM stdin;
+\.
+
+
+--
+-- Data for Name: imagenes; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY imagenes (id, producto, imagen) FROM stdin;
+\.
+
+
+--
+-- Data for Name: juegos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY juegos (id, nombre, compania, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: laptops; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY laptops (id, nombre, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: lavadorassecadoras; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY lavadorassecadoras (id, nombre, lavadoraosecadora, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: minicomponente; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY minicomponente (idaccesorio) FROM stdin;
+\.
+
+
+--
+-- Data for Name: muebles; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY muebles (id, nombre, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: nintendo; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY nintendo (idtodo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pantallas; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY pantallas (id, nombre, tamano, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pcescritorio; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY pcescritorio (id, nombre, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pcgaming; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY pcgaming (idtodo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: playstation; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY playstation (idtodo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: promocion; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY promocion (id, nombre_promocion, promocion, dias) FROM stdin;
+\.
+
+
+--
+-- Data for Name: proyectormonitor; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY proyectormonitor (id, nombre, proyectoromonitor, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: refrigeradorcongelador; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY refrigeradorcongelador (id, nombre, refrioconge, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: reproductoresportatiles; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY reproductoresportatiles (id, nombre, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: scannerimpresion; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY scannerimpresion (id, nombre, scanneroimpresora, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: smartphones; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY smartphones (id, nombre, compania, precio, especificaciones) FROM stdin;
+\.
+
+
+--
+-- Data for Name: tv; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY tv (idvideo) FROM stdin;
+\.
+
+
+--
+-- Data for Name: videojuegos; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY videojuegos (idconsolasyjuegos) FROM stdin;
+\.
+
+
+--
+-- Data for Name: xbox; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY xbox (idtodo) FROM stdin;
+\.
+
+
+--
+-- Name: accesorioselectronicos_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY accesorioselectronicos
+    ADD CONSTRAINT accesorioselectronicos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audifonos_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY audifonos
+    ADD CONSTRAINT audifonos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: consolas_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY consolas
+    ADD CONSTRAINT consolas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: dvdblueray_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY dvdblueray
+    ADD CONSTRAINT dvdblueray_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: especificaciones_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY especificaciones
+    ADD CONSTRAINT especificaciones_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: estufassartenes_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY estufassartenes
+    ADD CONSTRAINT estufassartenes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: figuras_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY figuras
+    ADD CONSTRAINT figuras_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: imagenes_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY imagenes
+    ADD CONSTRAINT imagenes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: juegos_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY juegos
+    ADD CONSTRAINT juegos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: laptops_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY laptops
+    ADD CONSTRAINT laptops_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: lavadorassecadoras_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY lavadorassecadoras
+    ADD CONSTRAINT lavadorassecadoras_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: muebles_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY muebles
+    ADD CONSTRAINT muebles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pantallas_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY pantallas
+    ADD CONSTRAINT pantallas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pcescritorio_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY pcescritorio
+    ADD CONSTRAINT pcescritorio_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: promocion_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY promocion
+    ADD CONSTRAINT promocion_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: proyectormonitor_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY proyectormonitor
+    ADD CONSTRAINT proyectormonitor_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: refrigeradorcongelador_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY refrigeradorcongelador
+    ADD CONSTRAINT refrigeradorcongelador_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reproductoresportatiles_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY reproductoresportatiles
+    ADD CONSTRAINT reproductoresportatiles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: scannerimpresion_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY scannerimpresion
+    ADD CONSTRAINT scannerimpresion_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: smartphones_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY smartphones
+    ADD CONSTRAINT smartphones_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
