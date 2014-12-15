@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: tienda
+  pool: 50
+  username: admin
+  password: team4
