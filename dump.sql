@@ -25,6 +25,20 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: f; Type: SEQUENCE; Schema: public; Owner: admin
+--
+
+CREATE SEQUENCE f
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.f OWNER TO admin;
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -34,7 +48,7 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE "ACCESORIOS" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "PRECIO" integer,
     "MARCA" text,
@@ -45,6 +59,23 @@ CREATE TABLE "ACCESORIOS" (
 
 
 ALTER TABLE public."ACCESORIOS" OWNER TO admin;
+
+--
+-- Name: CONSOLAS; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE "CONSOLAS" (
+    id integer NOT NULL,
+    "NOMBRE" text,
+    "TIPO" text,
+    "PRECIO" money,
+    "MODELO" text,
+    "ESPECIFICACIONES" text,
+    "CANTIDAD" integer
+);
+
+
+ALTER TABLE public."CONSOLAS" OWNER TO admin;
 
 --
 -- Name: ESCANER/IMPRESORA; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
@@ -63,6 +94,23 @@ CREATE TABLE "ESCANER/IMPRESORA" (
 
 
 ALTER TABLE public."ESCANER/IMPRESORA" OWNER TO admin;
+
+--
+-- Name: FIGURAS_VIDEOJUEGOS; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE "FIGURAS_VIDEOJUEGOS" (
+    id integer NOT NULL,
+    "NOMBRE" text NOT NULL,
+    "VIDEOJUEGO" text,
+    "PRECIO" money NOT NULL,
+    "MODELO" text,
+    "ESPECIFICACIONES" text,
+    "CANTIDAD" integer NOT NULL
+);
+
+
+ALTER TABLE public."FIGURAS_VIDEOJUEGOS" OWNER TO admin;
 
 --
 -- Name: IMAGENES; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
@@ -240,10 +288,26 @@ COPY "ACCESORIOS" (id, "NOMBRE", "PRECIO", "MARCA", "MODELO", "ESPECIFICACIONES"
 
 
 --
+-- Data for Name: CONSOLAS; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY "CONSOLAS" (id, "NOMBRE", "TIPO", "PRECIO", "MODELO", "ESPECIFICACIONES", "CANTIDAD") FROM stdin;
+\.
+
+
+--
 -- Data for Name: ESCANER/IMPRESORA; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
 COPY "ESCANER/IMPRESORA" (id, "NOMBRE", "TIPO", "PRECIO", "MARCA", "MODELO", "ESPECIFICACIONES", "CANTIDAD") FROM stdin;
+\.
+
+
+--
+-- Data for Name: FIGURAS_VIDEOJUEGOS; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY "FIGURAS_VIDEOJUEGOS" (id, "NOMBRE", "VIDEOJUEGO", "PRECIO", "MODELO", "ESPECIFICACIONES", "CANTIDAD") FROM stdin;
 \.
 
 
@@ -328,11 +392,34 @@ COPY "USUARIOS" (id, "NOMBRE", "EDAD", "SEXO", "DIRECCION", "PAIS", "FECHA DE NA
 
 
 --
+-- Name: f; Type: SEQUENCE SET; Schema: public; Owner: admin
+--
+
+SELECT pg_catalog.setval('f', 1, false);
+
+
+--
+-- Name: CONSOLAS_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY "CONSOLAS"
+    ADD CONSTRAINT "CONSOLAS_pkey" PRIMARY KEY (id);
+
+
+--
 -- Name: ESCANER/IMPRESORA_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
 --
 
 ALTER TABLE ONLY "ESCANER/IMPRESORA"
     ADD CONSTRAINT "ESCANER/IMPRESORA_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: FIGURAS_VIDEOJUEGOS_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY "FIGURAS_VIDEOJUEGOS"
+    ADD CONSTRAINT "FIGURAS_VIDEOJUEGOS_pkey" PRIMARY KEY (id);
 
 
 --
