@@ -61,12 +61,25 @@ CREATE TABLE "ACCESORIOS" (
 ALTER TABLE public."ACCESORIOS" OWNER TO admin;
 
 --
+-- Name: COMPRAS; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE "COMPRAS" (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    "FECHA_DE_COMPRAS" date NOT NULL,
+    "PRODUCTO" integer NOT NULL
+);
+
+
+ALTER TABLE public."COMPRAS" OWNER TO admin;
+
+--
 -- Name: CONSOLAS; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
 --
 
 CREATE TABLE "CONSOLAS" (
-    id integer NOT NULL,
-    "NOMBRE" text,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    "NOMBRE" text NOT NULL,
     "TIPO" text,
     "PRECIO" money,
     "MODELO" text,
@@ -78,11 +91,38 @@ CREATE TABLE "CONSOLAS" (
 ALTER TABLE public."CONSOLAS" OWNER TO admin;
 
 --
+-- Name: CUENTA; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE "CUENTA" (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    "CORREO" text NOT NULL,
+    "CONTRACENIA" text NOT NULL
+);
+
+
+ALTER TABLE public."CUENTA" OWNER TO admin;
+
+--
+-- Name: DATOS_DE_ENTREGA; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
+--
+
+CREATE TABLE "DATOS_DE_ENTREGA" (
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    "DOMICILIO" text NOT NULL,
+    "ENTRE_CALLES" text,
+    "TELEFONO_PARTICULAR" integer
+);
+
+
+ALTER TABLE public."DATOS_DE_ENTREGA" OWNER TO admin;
+
+--
 -- Name: ESCANER/IMPRESORA; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
 --
 
 CREATE TABLE "ESCANER/IMPRESORA" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "TIPO" text,
     "PRECIO" money,
@@ -100,7 +140,7 @@ ALTER TABLE public."ESCANER/IMPRESORA" OWNER TO admin;
 --
 
 CREATE TABLE "FIGURAS_VIDEOJUEGOS" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text NOT NULL,
     "VIDEOJUEGO" text,
     "PRECIO" money NOT NULL,
@@ -117,7 +157,7 @@ ALTER TABLE public."FIGURAS_VIDEOJUEGOS" OWNER TO admin;
 --
 
 CREATE TABLE "IMAGENES" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "ID_PRODUCTO" integer,
     "RUTA_IMAGEN" text
 );
@@ -130,7 +170,7 @@ ALTER TABLE public."IMAGENES" OWNER TO admin;
 --
 
 CREATE TABLE "LAPTOPS" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "MARCA" text,
     "MODELO" text,
@@ -146,7 +186,7 @@ ALTER TABLE public."LAPTOPS" OWNER TO admin;
 --
 
 CREATE TABLE "LAVADORAS/SECADORAS" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "TIPO" text,
     "PRECIO" money,
@@ -164,7 +204,7 @@ ALTER TABLE public."LAVADORAS/SECADORAS" OWNER TO admin;
 --
 
 CREATE TABLE "MONITORES/PROYECTORES" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "TIPO" text,
     "PRECIO" money,
@@ -182,7 +222,7 @@ ALTER TABLE public."MONITORES/PROYECTORES" OWNER TO admin;
 --
 
 CREATE TABLE "PANTALLAS" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "TAMANIO" text,
     "PRECIO" money,
@@ -200,7 +240,7 @@ ALTER TABLE public."PANTALLAS" OWNER TO admin;
 --
 
 CREATE TABLE "PC_ESCRITORIO" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "PRECIO" money,
     "MARCA" text,
@@ -217,7 +257,7 @@ ALTER TABLE public."PC_ESCRITORIO" OWNER TO admin;
 --
 
 CREATE TABLE "PROMOCIONES" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "PROMOCION" text,
     dias integer
@@ -231,7 +271,7 @@ ALTER TABLE public."PROMOCIONES" OWNER TO admin;
 --
 
 CREATE TABLE "REFIGERADORES/CONGELADORES" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "TIPO" text,
     "PRECIO" money,
@@ -249,7 +289,7 @@ ALTER TABLE public."REFIGERADORES/CONGELADORES" OWNER TO admin;
 --
 
 CREATE TABLE "SMARTPHONES" (
-    id integer NOT NULL,
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
     "NOMBRE" text,
     "COMPANIA" text,
     "PRECIO" money,
@@ -267,13 +307,12 @@ ALTER TABLE public."SMARTPHONES" OWNER TO admin;
 --
 
 CREATE TABLE "USUARIOS" (
-    id integer NOT NULL,
-    "NOMBRE" text,
-    "EDAD" integer,
-    "SEXO" text,
-    "DIRECCION" text,
-    "PAIS" text,
-    "FECHA DE NACIMIENTO" text
+    id integer DEFAULT nextval('f'::regclass) NOT NULL,
+    "NOMBRE" text NOT NULL,
+    "APELLIDO_PATERNO" text NOT NULL,
+    "APELLIDO_MATERNO" text NOT NULL,
+    "FECHA DE NACIMIENTO" date NOT NULL,
+    "SEXO" text NOT NULL
 );
 
 
@@ -288,10 +327,34 @@ COPY "ACCESORIOS" (id, "NOMBRE", "PRECIO", "MARCA", "MODELO", "ESPECIFICACIONES"
 
 
 --
+-- Data for Name: COMPRAS; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY "COMPRAS" (id, "FECHA_DE_COMPRAS", "PRODUCTO") FROM stdin;
+\.
+
+
+--
 -- Data for Name: CONSOLAS; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
 COPY "CONSOLAS" (id, "NOMBRE", "TIPO", "PRECIO", "MODELO", "ESPECIFICACIONES", "CANTIDAD") FROM stdin;
+\.
+
+
+--
+-- Data for Name: CUENTA; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY "CUENTA" (id, "CORREO", "CONTRACENIA") FROM stdin;
+\.
+
+
+--
+-- Data for Name: DATOS_DE_ENTREGA; Type: TABLE DATA; Schema: public; Owner: admin
+--
+
+COPY "DATOS_DE_ENTREGA" (id, "DOMICILIO", "ENTRE_CALLES", "TELEFONO_PARTICULAR") FROM stdin;
 \.
 
 
@@ -387,7 +450,7 @@ COPY "SMARTPHONES" (id, "NOMBRE", "COMPANIA", "PRECIO", "MARCA", "MODELO", "ESPE
 -- Data for Name: USUARIOS; Type: TABLE DATA; Schema: public; Owner: admin
 --
 
-COPY "USUARIOS" (id, "NOMBRE", "EDAD", "SEXO", "DIRECCION", "PAIS", "FECHA DE NACIMIENTO") FROM stdin;
+COPY "USUARIOS" (id, "NOMBRE", "APELLIDO_PATERNO", "APELLIDO_MATERNO", "FECHA DE NACIMIENTO", "SEXO") FROM stdin;
 \.
 
 
@@ -399,11 +462,35 @@ SELECT pg_catalog.setval('f', 1, false);
 
 
 --
+-- Name: COMPRAS_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY "COMPRAS"
+    ADD CONSTRAINT "COMPRAS_pkey" PRIMARY KEY (id);
+
+
+--
 -- Name: CONSOLAS_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
 --
 
 ALTER TABLE ONLY "CONSOLAS"
     ADD CONSTRAINT "CONSOLAS_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: CUENTA_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY "CUENTA"
+    ADD CONSTRAINT "CUENTA_pkey" PRIMARY KEY (id);
+
+
+--
+-- Name: DATOS_DE_ENTREGA_pkey; Type: CONSTRAINT; Schema: public; Owner: admin; Tablespace: 
+--
+
+ALTER TABLE ONLY "DATOS_DE_ENTREGA"
+    ADD CONSTRAINT "DATOS_DE_ENTREGA_pkey" PRIMARY KEY (id);
 
 
 --
