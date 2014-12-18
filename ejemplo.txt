@@ -1,0 +1,25 @@
+abrimos una terminal
+nos vamos a la carpeta MyP donde tenemos el repositorio de git
+si no tenemos la carpeta hacemos:
+"git clone https://github.com/karlycaramelo/MyP.git"
+nos metemos a la carpeta.
+luego nos metemos a postgres:
+"su - postgres"
+una ves el el bash$
+creamos una basededatos basia:
+"createdb tienda" 
+en este caso la base se llamara "tienda"
+luego nos metemos a la carpeta en donde se encuetra MyP la cual ya habiamos descargado en mi caso la ruta es:
+"cd /home/jonathan/Escritorio/MyP" 
+alli hacemos el comando que jala el .sql de la base de datos
+"psql -d tienda -f dump.sql"
+si hasta este punto todo va bien podran meterce a la base de datos:
+"psql tienda"
+y para saber si si lo hizo bien hacemos: 
+"\d"
+para que aparescan las tablas que tiene la base
+para poder modificar la base es necesario crear un usuario
+
+"CREATE USER admin WITH SUPERUSER LOGIN PASSWORD '1111';"
+y eso es todo.
+
