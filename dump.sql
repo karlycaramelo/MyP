@@ -42,6 +42,20 @@ ALTER TABLE public.f OWNER TO admin;
 SET default_tablespace = '';
 
 SET default_with_oids = false;
+--
+--
+--
+
+CREATE TABLE "USER" (
+id integer DEFAULT nextval('f'::regclass) NOT NULL,
+"NOMBRE" text,
+"EMAIL" string,
+"PASSWORD" string,
+"REMEMBER_SESSION" string
+);
+
+string password:string 
+emember_session:string
 
 --
 -- Name: ACCESORIOS; Type: TABLE; Schema: public; Owner: admin; Tablespace: 
